@@ -96,7 +96,7 @@ export default function SettingsClient({ initialSettings }: SettingsClientProps)
             );
             console.log("Settings saved successfully:", response.data);
 
-            setCurrentSavedSettings(settings);
+            setCurrentSavedSettings({ ...settings });
             toast.success("Settings saved successfully");
           
         } catch (error) {

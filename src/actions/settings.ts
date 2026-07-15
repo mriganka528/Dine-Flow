@@ -1,9 +1,10 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { RestaurantSettings } from "@/app/admin/settings/types";
 import { prisma } from "@/lib/prisma";
 import { restaurantSettingsSchema } from "@/schemas/restaurentSchema";
 
-
 export async function getRestaurantSettings(): Promise<RestaurantSettings | null> {
+  noStore();
   const restaurant = await prisma.restaurant.findFirst();
 
   if (!restaurant) return null;

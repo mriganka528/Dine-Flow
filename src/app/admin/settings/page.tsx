@@ -2,6 +2,8 @@ import { getRestaurantSettings } from "@/actions/settings";
 import SettingsClient from "./components/SettingsClient";
 import { RestaurantSettings } from "./types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Settings() {
   const defaultSettings: RestaurantSettings = {

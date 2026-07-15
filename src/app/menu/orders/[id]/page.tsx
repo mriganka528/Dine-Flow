@@ -40,7 +40,7 @@ export default async function OrderDetailPage({
     <OrderDetail
       initialOrder={JSON.parse(JSON.stringify(order))}
       restaurant={{
-        name: restaurant?.restaurantName ?? "Foodbot Kitchen",
+        name: restaurant?.restaurantName ?? "Dine Flow Kitchen",
         prepTime: restaurant?.averagePrepTime ?? 20,
         phone: restaurant?.phone ?? "",
         address: restaurant?.address ?? "",
