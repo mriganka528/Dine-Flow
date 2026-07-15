@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
-import type { Role } from "@/generated/prisma/client";
 import {
   ADMIN_SESSION_MAX_AGE,
   ADMIN_SESSION_COOKIE,
   ADMIN_REMEMBERED_SESSION_MAX_AGE,
 } from "@/lib/admin-session";
+import { Role } from "@prisma/client";
 
 type AdminTokenInput = {
   id: string;

@@ -31,7 +31,6 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import type { RestaurantSettings } from '../types';
-import { OrderMode } from '@/generated/prisma/enums';
 import SettingsPanel from './SettingsPanel';
 import Field from './Field';
 import SegmentButton from './SegmentButton';
@@ -39,6 +38,7 @@ import ToggleRow from './ToggleRow';
 import { getInitials } from '@/actions/getInitial';
 import { SearchableSelect } from '@/components/ui/searchable-select';
 import { getCurrencyOptions } from '@/lib/currency';
+import { OrderMode } from '@prisma/client';
 
 interface SettingsClientProps {
     initialSettings: RestaurantSettings;
