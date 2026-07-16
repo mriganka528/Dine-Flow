@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { formatMoney } from "@/lib/currency";
 import { useOrderUpdates } from "@/lib/useOrderUpdates";
+import { BillActions, type BillData } from "@/components/bill";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
 
@@ -164,9 +165,11 @@ function StatusTimeline({ status, orderType }: { status: string; orderType: stri
 export default function OrderDetail({
   initialOrder,
   restaurant,
+  bill,
 }: {
   initialOrder: Order;
   restaurant: { name: string; prepTime: number; phone: string; address: string; currency: string };
+  bill: BillData;
 }) {
   const [order, setOrder] = useState<Order>(initialOrder);
   const currency = restaurant.currency;
@@ -180,6 +183,14 @@ export default function OrderDetail({
       }));
     }
   });
+
+  // Keep the invoice's status badges in sync with live SSE updates. All
+  // monetary values remain the historical ones persisted on the order.
+  const liveBill: BillData = {
+    ...bill,
+    orderStatus: order.status,
+    payment: { ...bill.payment, status: order.paymentStatus },
+  };
 
   return (
     <main className="min-h-screen bg-linear-to-b from-amber-50/80 via-white to-slate-50/50 pb-12 text-foreground">
@@ -260,6 +271,17 @@ export default function OrderDetail({
         <div className="rounded-2xl border bg-white p-5 shadow-sm">
           <h2 className="mb-4 text-sm font-semibold text-zinc-900">Order Progress</h2>
           <StatusTimeline status={order.status} orderType={order.orderType} />
+        </div>
+
+        {/* Invoice / Bill */}
+        <div className="rounded-2xl border bg-white p-5 shadow-sm">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-zinc-900">Invoice</h2>
+            <span className="text-xs text-muted-foreground">
+              #{order.orderNumber}
+            </span>
+          </div>
+          <BillActions bill={liveBill} />
         </div>
 
         {/* Items */}
