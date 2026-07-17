@@ -23,6 +23,7 @@ export async function getRestaurantSettings(): Promise<RestaurantSettings | null
     autoAcceptOrders: restaurant.autoAcceptOrders,
     dineInEnabled: restaurant.dineInEnabled,
     deliveryEnabled: restaurant.deliveryEnabled,
+    logoUrl: restaurant.logoUrl,
   };
 }
 

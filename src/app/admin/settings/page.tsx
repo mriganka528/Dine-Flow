@@ -20,6 +20,7 @@ export default async function Settings() {
   autoAcceptOrders: false,
   dineInEnabled: true,
   deliveryEnabled: true,
+  logoUrl: null,
 };
   const restaurant = await getRestaurantSettings();
 

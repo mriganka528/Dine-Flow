@@ -14,4 +14,5 @@ export interface RestaurantSettings {
   autoAcceptOrders: boolean;
   dineInEnabled: boolean;
   deliveryEnabled: boolean;
+  logoUrl: string | null;
 }
