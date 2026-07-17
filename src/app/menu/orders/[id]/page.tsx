@@ -10,14 +10,13 @@ export default async function OrderDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   await connection();
 
   const customerId = await getCustomerId();
   if (!customerId) {
     redirect(`/auth?redirect=/menu/orders/${id}`);
   }
-
-  const { id } = await params;
 
   // Single optimized query for the order graph; restaurant has no relation to
   // Order so it's fetched in parallel.
